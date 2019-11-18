@@ -100,35 +100,35 @@ Early in a deployment of Splunk, local configurations could be used while gettin
 
 This app contains scripts for Windows and Linux forwarders that will remove local configurations of "deploymentclient.conf" in favor of a coniguration that has been deployed from the deployment server. This allows for that configuration to only be controlled via the deployment server from that point forward.
 
-Windows - `dsRemove.ps1`
-\*Nix - `dsRemove.sh`
+Windows - `dsRemove.ps1`\
+\*Nix - `dsRemove.sh`\
 
 ###### Correct inputs/server hostname configurations
 Many times we've come across an envionment where hundreds of forwarders are reporting with the same name and forwarder GUID. This usually happens when an image template isn't properly maintained after a fowarder has been embedded in it.
 
 This app contains scripts for Windows and Linux forwarders that will determine if correction is necessary in the local "inputs.conf" and "server.conf" and correct them. The scripts are designed to only change what is needed and leave the rest of the files unchanged.
 
-Windows - `hostCorrect.ps1`
-\*Nix - `hostCorrect.sh`
+Windows - `hostCorrect.ps1`\
+\*Nix - `hostCorrect.sh`\
 
 ###### Regenerate forwarder GUID
 Another by-product of the previous use-case is forwarder GUIDs all being the same. While this doesn't affect how a forwarder performs its duties, unique GUIDs ensures if hosts have the same name they are still uniquely idenitifiable for troubleshooting purposes.
 
 This app contains scripts for Windows and Linux forwarders that will move the existing "instance.cfg" to become a backup and restart the forwarder. Upon restarting, a new GUID will be generated.
 
-Windows - `regenGUID.ps1`
-\*Nix - `regenGUID.sh`
+Windows - `regenGUID.ps1`\
+\*Nix - `regenGUID.sh`\
 
 ###### Update default 'changeme' password on Splunk Forwarders (before 7.1.0)
 Forwarders deployed before version 7.1.0 didn't require the admin password be changed upon installation. Starting at 7.1.0, the forwarders required either a user-seed file or manual input of the password during first-time run. While the REST API of the fowrwarder is not configured to allow POST requests until the password is changed on versions prior to 7.1.0, changing the password is still recommended.
 
 This app contains scripts for Windows and Linux forwarders that will allow either a static password or random password to be configured. By default, a random password is generated and printed into the log which is sent back to Splunk.
 
-Windows - `pwchange.bat`
-\*Nix - `pwchange.sh`
+Windows - `pwchange.bat`\
+\*Nix - `pwchange.sh`\
 
 ## Restarting the Forwarder
 Because most of these use-cases require the forwarders be restarted, an additional script has been introduced that takes the outcome of each of the scripts used and determines if a restart is required. Each script is designed to create an empty file that the restart script uses to determine if a restart is necessary. If the restart script finds one of the files used to trigger a restart, it removes them and should keep the system clean of unnecessary files.
 
-Windows - `restart.ps1`
-\*Nix - `restart.sh`
+Windows - `restart.ps1`\
+\*Nix - `restart.sh`\
