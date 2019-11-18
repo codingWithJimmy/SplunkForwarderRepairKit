@@ -2,7 +2,7 @@
 This kit was compilled based on common issues with Splunk deployments and managing idiosyncrasies that tend to naturally occur.
 
 ## Using the app
-Given the use-cases listed above, you will likely have multiple copies of the app with different inputs enabled for each. In any case, the app should restart Splunk when it is installed as all of the inputs are designed to be run when the forwarder starts.
+Given the use-cases listed below, you will likely have multiple copies of the app with different inputs enabled for each case. In any case, the app should restart Splunk when it is installed as all of the inputs are designed to be run when the forwarder starts.
 
 It should be noted that if multiple copies of the app are created, the inputs.conf would need to be adjusted to account for the change in path for Windows Powershell scripts.
 
