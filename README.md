@@ -2,7 +2,7 @@
 This kit was compilled based on common issues with Splunk deployments and managing idiosyncrasies that tend to naturally occur.
 
 ## Using the app
-Given the use-cases listed above, you will likely have multiple copies of the app with different input enabled for each. In any case, the app should restart Splunk when it is installed as all of the inputs are designed to be run when the forwarder starts.
+Given the use-cases listed above, you will likely have multiple copies of the app with different inputs enabled for each. In any case, the app should restart Splunk when it is installed as all of the inputs are designed to be run when the forwarder starts.
 
 It should be noted that if multiple copies of the app are created, the inputs.conf would need to be adjusted to account for the change in path for Windows Powershell scripts.
 
@@ -119,7 +119,7 @@ This app contains scripts for Windows and Linux forwarders that will move the ex
 Windows - `regenGUID.ps1`\
 \*Nix - `regenGUID.sh`
 
-###### Update default 'changeme' password on Splunk Forwarders (before 7.1.0)
+###### Update default 'changeme' password on Splunk Forwarders (primary installations before 7.1.0)
 Forwarders deployed before version 7.1.0 didn't require the admin password be changed upon installation. Starting at 7.1.0, the forwarders required either a user-seed file or manual input of the password during first-time run. While the REST API of the fowrwarder is not configured to allow POST requests until the password is changed on versions prior to 7.1.0, changing the password is still recommended.
 
 This app contains scripts for Windows and Linux forwarders that will allow either a static password or random password to be configured. By default, a random password is generated and printed into the log which is sent back to Splunk.
