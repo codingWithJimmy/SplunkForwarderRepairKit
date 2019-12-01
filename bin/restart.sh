@@ -4,9 +4,10 @@ RESTARTINPUT="$SPLUNK_HOME/etc/restartinput.txt"
 RESTARTSERVER="$SPLUNK_HOME/etc/restartserver.txt"
 RESTARTDS="$SPLUNK_HOME/etc/restartds.txt"
 RESTARTGUID="$SPLUNK_HOME/etc/restartguid.txt"
+RESTARTDATETIME="$SPLUNK_HOME/etc/restartdatetime.txt"
 
 ### If any files exist, restart forwarder
-if [ -f $RESTARTINPUT ] | [ -f $RESTARTSERVER ] | [ -f $RESTARTDS ] | [ -f $RESTARTGUID ]; then
+if [ -f $RESTARTINPUT ] | [ -f $RESTARTSERVER ] | [ -f $RESTARTDS ] | [ -f $RESTARTGUID ] | [ -f $RESTARTDATETIME ]; then
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: One or more settings has been changed."
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Restarting forwarder."
 	if [ -f $RESTARTINPUT ]; then
@@ -20,6 +21,9 @@ if [ -f $RESTARTINPUT ] | [ -f $RESTARTSERVER ] | [ -f $RESTARTDS ] | [ -f $REST
 	fi
 	if [ -f $RESTARTGUID ]; then
 		rm $RESTARTGUID
+	fi
+	if [ -f $RESTARTDATETIME ]; then
+		rm $RESTARTDATETIME
 	fi
 	sleep 5
 	$SPLUNK_HOME/bin/splunk restart
