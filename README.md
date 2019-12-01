@@ -73,6 +73,23 @@ interval = -1
 source = ds_remove_output
 script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\dsRemove.ps1"
 
+### Scripts used to correct issues with datetime.xml
+### https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020
+[script://./bin/dateTimeCorrect.sh]
+disabled = 1
+index = _internal
+sourcetype = datetime_correct:output
+interval = -1
+source = datetime_correct_output
+
+[powershell://dateTimeCorrect]
+disabled = 1
+index = _internal
+sourcetype = datetime_correct:output
+interval = -1
+source = datetime_correct_output
+script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\dateTimeCorrect.ps1"
+
 ### Admin password change scripts
 [script://./bin/pwchange.sh]
 disabled = 1
@@ -118,6 +135,14 @@ This app contains scripts for Windows and Linux forwarders that will move the ex
 
 Windows - `regenGUID.ps1`\
 \*Nix - `regenGUID.sh`
+
+###### Install updated datetime.xml file
+A notice was sent out in November of 2019 that stated there was an issue with the datetime.xml that would affect data ingested due to a misconfigured datetime.xml. The bug and fix can be read about here: https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020
+
+This app contains scripts for Windows and Linux forwarders that will back up the existing "datetime.xml" to replace with the corrected version contained within the app. 
+
+Windows - `dateTimeCorrect.ps1`\
+\*Nix - `dateTimeCorrect.sh`
 
 ###### Update default 'changeme' password on Splunk Forwarders (primary installations before 7.1.0)
 Forwarders deployed before version 7.1.0 didn't require the admin password be changed upon installation. Starting at 7.1.0, the forwarders required either a user-seed file or manual input of the password during first-time run. While the REST API of the forwarder is not configured to allow POST requests until the password is changed on versions prior to 7.1.0, changing the password is still recommended.
