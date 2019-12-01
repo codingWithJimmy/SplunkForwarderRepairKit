@@ -5,10 +5,10 @@ LOCAL=$(find $SPLUNK_HOME/etc/system/local -type f -name deploymentclient.conf |
 RESTART_CHECK=$SPLUNK_HOME/etc/restartds.txt
 
 ### Check variables and take action accordingly
-if [ $DEPLOYED_APP = "0" ]; then
+if [ $LOCAL = "1" ] & [ $DEPLOYED_APP = "0" ]; then
         echo $(date -R) $HOSTNAME: No deploymentclient.conf detected in \$SPLUNK_HOME/etc/apps. Bailing out so the fowarder doesn\'t get orphaned.
         exit
-elif [ $LOCAL = "1" ]; then
+elif [ $LOCAL = "1" ] & [ $DEPLOYED_APP  = "1" ]; then
 		# Remove the deploymentclient.conf from $SPLUNK_HOME/etc/system/local
 		rm -f $SPLUNK_HOME/etc/system/local/deploymentclient.conf > /dev/null 2>&1
 		echo $(date -R) $HOSTNAME: Removed deploymentclient.conf from local system.
