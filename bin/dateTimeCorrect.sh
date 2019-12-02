@@ -10,7 +10,7 @@ if [ $DATETIME_DIFFERENCE = 0 ]; then
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: The datetime.xml is the updated version. No correction necessary..."
 else
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: The datetime.xml file needs to be updated. Updating..."
-	cp $EXISTING_DATETIME $EXISTING_DATETIME.$(date +"%m%d%Y")
+	mv $EXISTING_DATETIME $EXISTING_DATETIME.$(date +"%m%d%Y")
 	cp $REFERENCE_DATETIME $EXISTING_DATETIME
 	touch $RESTART_DATETIME_CHECK
 fi
