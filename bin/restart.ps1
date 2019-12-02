@@ -4,11 +4,11 @@ $serverPath = "$SPLUNKHOME\etc\restartserver.txt"
 $dsPath = "$SPLUNKHOME\etc\restartds.txt"
 $guidPath = "$SPLUNKHOME\etc\restartguid.txt"
 $dateTimePath = "$SPLUNKHOME\etc\restartdatetime.txt"
-$restartInput = {$(Test-Path "$SPLUNKHOME\etc\restartinput.txt" -PathType Leaf)}
-$restartServer = {$(Test-Path "$SPLUNKHOME\etc\restartserver.txt" -PathType Leaf)}
-$restartDS = {$(Test-Path "$SPLUNKHOME\etc\restartds.txt" -PathType Leaf)}
-$restartGUID = {$(Test-Path "$SPLUNKHOME\etc\restartguid.txt" -PathType Leaf)}
-$restartDateTime = {$(Test-Path "$SPLUNKHOME\etc\restartdatetime.txt" -PathType Leaf)}
+$restartInput = $(Test-Path "$SPLUNKHOME\etc\restartinput.txt" -PathType Leaf)
+$restartServer = $(Test-Path "$SPLUNKHOME\etc\restartserver.txt" -PathType Leaf)
+$restartDS = $(Test-Path "$SPLUNKHOME\etc\restartds.txt" -PathType Leaf)
+$restartGUID = $(Test-Path "$SPLUNKHOME\etc\restartguid.txt" -PathType Leaf)
+$restartDateTime = $(Test-Path "$SPLUNKHOME\etc\restartdatetime.txt" -PathType Leaf)
 
 ### Filter to attach timestamps where necessary
 filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff') ${env:COMPUTERNAME}: $_"}
@@ -17,19 +17,19 @@ if ($restartInput -eq "True" -OR $restartServer -eq "True" -OR $restartDS -eq "T
 	Write-output "One or more settings has been changed." | timestamp
 	Write-output "Restarting forwarder." | timestamp
 	if ($restartInput -eq "True") {
-		Delete-Item -path "$inputPath"
+		Remove-Item -path "$inputPath"
 	}
 	if ($restartServer -eq "True") {
-		Delete-Item -path "$serverPath"
+		Remove-Item -path "$serverPath"
 	}
 	if ($restartDS -eq "True") {
-		Delete-Item -path "$dsPath"
+		Remove-Item -path "$dsPath"
 	}
 	if ($restartGUID -eq "True") {
-		Delete-Item -path "$guidPath"
+		Remove-Item -path "$guidPath"
 	}
 	if ($restartDateTime -eq "True") {
-		Delete-Item -path "$dateTimePath"
+		Remove-Item -path "$dateTimePath"
 	}
 	sleep 5
 	$restart = "restart"
