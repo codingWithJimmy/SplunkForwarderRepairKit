@@ -1,6 +1,6 @@
 ### Configure file paths for the system
-$INSTANCE = "$SPLUNKHOME\etc\instance.cfg"
-$INSTANCE_CHECK = {$(Test-Path "$SPLUNKHOME\etc\instance.cfg.*")}
+$INSTANCE_FILE = "$SPLUNKHOME\etc\instance.cfg"
+$INSTANCE_CHECK = {$(Test-Path "$INSTANCE_FILE.*")}
 $RESTART_CHECK = "$SPLUNKHOME\etc\restartguid.txt"
 
 ### Filter to attach timestamps where necessary
@@ -12,7 +12,7 @@ if ($INSTANCE_CHECK -eq "True") {
 } else {
     ### Rename "instance.cfg" and set the restart flag in the checkpoint file
     Write-output "Backing up instance.cfg." | timestamp
-    Copy-Item -Path "$INSTANCE" -Destination "$INSTANCE\instance_$(Get-Date -Format 'MMddyyyy').bak"
-    Remove-Item -Path "$INSTANCE"
+    Copy-Item -Path "$INSTANCE_FILE" -Destination "$INSTANCE_FILE.$(Get-Date -Format 'MMddyyyy').bak"
+    Remove-Item -Path "$INSTANCE_FILE"
     Out-File -FilePath "$RESTART_CHECK"
 }
