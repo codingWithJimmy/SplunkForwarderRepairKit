@@ -31,9 +31,7 @@ if ($restartInput -eq "True" -OR $restartServer -eq "True" -OR $restartDS -eq "T
 	if ($restartDateTime -eq "True") {
 		Remove-Item -path "$dateTimePath"
 	}
-	sleep 5
-	$restart = "restart"
-	& "$SPLUNKHOME\bin\splunk.exe" $restart
+	Remove-Item -path "$SPLUNKHOME\etc\apps\SplunkForwarderRepairKit\DeleteMeToRestart"
 } else {
 	Write-output "No settings have been changed." | timestamp
 	Write-output "No restart required." | timestamp

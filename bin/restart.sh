@@ -25,8 +25,7 @@ if [ -f $RESTARTINPUT ] | [ -f $RESTARTSERVER ] | [ -f $RESTARTDS ] | [ -f $REST
 	if [ -f $RESTARTDATETIME ]; then
 		rm $RESTARTDATETIME
 	fi
-	sleep 5
-	$SPLUNK_HOME/bin/splunk restart
+	rm -f $SPLUNK_HOME/etc/apps/SplunkForwarderRepairKit/DeleteMeToRestart
 else
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: No settings have been changed."
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: No restart required."
