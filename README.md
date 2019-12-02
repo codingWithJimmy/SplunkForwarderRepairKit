@@ -151,7 +151,7 @@ Windows - `pwchange.bat`\
 \*Nix - `pwchange.sh`
 
 ## Restarting the Forwarder
-Because most of these use-cases require the forwarders be restarted, an additional script has been introduced that takes the outcome of each of the scripts used and determines if a restart is required. Each script is designed to create an empty file that the restart script uses to determine if a restart is necessary. If the restart script finds one of the files used to trigger a restart, it removes them and should keep the system clean of unnecessary files.
+Because most of these use-cases require the forwarders be restarted, an additional script has been introduced that takes the outcome of each of the scripts used and determines if a restart is required. Each script is designed to create an empty file that the restart script uses to determine if a restart is necessary. If the restart script finds one of the files used to trigger a restart, it removes them as well as one other file. Removing the other file should trigger a restart from the deployment server when the app re-syncs for the now missing file.
 
 Windows - `restart.ps1`\
 \*Nix - `restart.sh`
