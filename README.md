@@ -21,7 +21,7 @@ source = restart_output
 disabled = 1
 index = _internal
 sourcetype = restart:output
-interval = */2 * * * *
+schedule = */2 * * * *
 source = restart_output
 script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\restart.ps1"
 
@@ -37,7 +37,6 @@ source = regen_guid_output
 disabled = 1
 index = _internal
 sourcetype = regen_guid:output
-interval = -1
 source = regen_guid_output
 script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\regenGUID.ps1"
 
@@ -53,7 +52,6 @@ source = host_rename_output
 disabled = 1
 index = _internal
 sourcetype = host_rename:output
-interval = -1
 source = host_rename_output
 script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\hostCorrect.ps1"
 
@@ -69,7 +67,6 @@ source = ds_remove_output
 disabled = 1
 index = _internal
 sourcetype = ds_remove:output
-interval = -1
 source = ds_remove_output
 script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\dsRemove.ps1"
 
@@ -86,7 +83,6 @@ source = datetime_correct_output
 disabled = 1
 index = _internal
 sourcetype = datetime_correct:output
-interval = -1
 source = datetime_correct_output
 script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\dateTimeCorrect.ps1"
 
