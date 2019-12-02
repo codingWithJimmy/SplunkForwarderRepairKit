@@ -1,4 +1,5 @@
 ### Configure file paths for the system
+$INSTANCE = "$SPLUNKHOME\etc\instance.cfg"
 $INSTANCE_CHECK = {$(Test-Path "$SPLUNKHOME\etc\instance.cfg.*")}
 $RESTART_CHECK = "$SPLUNKHOME\etc\restartguid.txt"
 
