@@ -2,7 +2,7 @@
 This kit was compiled based on common issues with Splunk deployments and managing idiosyncrasies that tend to naturally occur.
 
 ## Using the app
-Given the use-cases listed below, you will likely have multiple copies of the app with different inputs enabled for each case. In any case, the app should restart Splunk when it is installed as all of the inputs are designed to be run when the forwarder starts.
+Given the use-cases listed below, you will likely have multiple copies of the app with different scripted inputs enabled for each case. In any case, the app should restart Splunk when it is installed as all of the inputs are designed to be run when the forwarder starts.
 
 It should be noted that if multiple copies of the app are created, the inputs.conf would need to be adjusted to account for the change in path for Windows Powershell scripts.
 
@@ -140,6 +140,8 @@ Windows - `regenGUID.ps1`\
 A notice was sent out in November of 2019 that stated there was an issue with the datetime.xml that would affect data ingested due to a misconfigured datetime.xml. The bug and fix can be read about here: https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020
 
 This app contains scripts for Windows and Linux forwarders that will back up the existing "datetime.xml" to replace with the corrected version contained within the app. 
+
+**NOTE: This should only be used on Universal Forwarders. Please see the above documentation link for instructions for other Splunk instances.**
 
 Windows - `dateTimeCorrect.ps1`\
 \*Nix - `dateTimeCorrect.sh`
