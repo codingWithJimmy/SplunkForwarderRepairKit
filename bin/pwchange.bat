@@ -3,6 +3,9 @@ REM Define the original and new passwords here. To use automatic password genera
 SET OLDPASS=changeme
 SET NEWPASS=auto
 
+REM Configure if the random password generated should be printed into the output that is sent back to Splunk. Default is "0" which means it's NOT printed. Change to "1" to print.
+SET PRINT_PASS=0
+
 REM Settings for automatic password generation. Not used if NEWPASS is not set to 'auto'
 Setlocal EnableDelayedExpansion
 SET _RNDLength=16
@@ -58,7 +61,11 @@ IF NOT "%LOGIN%"=="Failed" (
 REM Create the checkpoint file and log success. This will print the password in the log message passed back to Splunk.
 :AUTOSUCCESS
 echo %date% %time% %HOST%: Splunk account password successfully changed. > "%CHECKPOINT%"
+IF NOT "%PRINT_PASS%"=="0" (
 echo %date% %time% %HOST%: Splunk account password successfully changed. Automatic password: %NEWPASS%
+) ELSE (
+echo "%date% %time% %HOST%: Splunk account password successfully changed. Automatic password: **********"
+)
 exit
 
 REM Create the checkpoint file and log success.
