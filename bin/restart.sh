@@ -7,7 +7,7 @@ RESTARTGUID="$SPLUNK_HOME/etc/restartguid.txt"
 RESTARTDATETIME="$SPLUNK_HOME/etc/restartdatetime.txt"
 
 ### If any files exist, restart forwarder
-if [ -f $RESTARTINPUT ] | [ -f $RESTARTSERVER ] | [ -f $RESTARTDS ] | [ -f $RESTARTGUID ] | [ -f $RESTARTDATETIME ]; then
+if [ -f $RESTARTINPUT ] || [ -f $RESTARTSERVER ] || [ -f $RESTARTDS ] || [ -f $RESTARTGUID ] || [ -f $RESTARTDATETIME ]; then
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: One or more settings has been changed."
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Restarting forwarder."
 	if [ -f $RESTARTINPUT ]; then
