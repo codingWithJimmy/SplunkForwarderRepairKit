@@ -4,7 +4,6 @@ INPUTS_FILE="$SPLUNK_HOME/etc/system/local/inputs.conf"
 SERVER_FILE="$SPLUNK_HOME/etc/system/local/server.conf"
 RESTART_INPUT_CHECK="$SPLUNK_HOME/etc/restartinput.txt"
 RESTART_SERVER_CHECK="$SPLUNK_HOME/etc/restartserver.txt"
-CURRENT_SERVER=$(cat "$SERVER_FILE" | grep "serverName =" | awk '{printf $3}')
 
 ### Check for the existence of the inputs file and create if it doesn't exist
 if [ -f "$INPUTS_FILE" ]; then
@@ -17,7 +16,17 @@ else
 	CURRENT_HOST=$(cat "$INPUTS_FILE" | grep "host =" | awk '{printf $3}')
 fi
 
-### Compare those values and correct if necessary
+### Check for the existence of a serverName value and insert one if one isn't configured
+CURRENT_SERVER=$(cat "$SERVER_FILE" | grep "serverName =" | awk '{printf $3}')
+if [ -z "CURRENT_SERVER" ]; then
+	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: There is no serverName value configured. Inserting one..."
+	echo "
+	[general]
+	host = IntentionallyWrong" >> "$SERVER_FILE"
+	CURRENT_SERVER=$(cat "$SERVER_FILE" | grep "serverName =" | awk '{printf $3}')
+fi
+
+### Check the current values of the configured files and correct if necessary
 if [ "$CURRENT_HOST" = "$HOSTNAME" ]; then
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Currently configured host name: $CURRENT_HOST. No correction necessary..."
 else
