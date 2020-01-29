@@ -38,7 +38,7 @@ fi
 if [ "$CURRENT_SERVER" = "$HOSTNAME" ]; then
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Currently configured server name: $CURRENT_SERVER. No correction necessary..."
 else
-	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Currently configured server name: $CURRENT_SERVER. Reconfiguring inputs.conf..."
+	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Currently configured server name: $CURRENT_SERVER. Reconfiguring server.conf..."
 	cp "$SERVER_FILE" "$SERVER_FILE".$(date +"%m%d%Y")
 	sed -i "s/$CURRENT_SERVER/$HOSTNAME/" "$SERVER_FILE"
 	touch "$RESTART_SERVER_CHECK"
