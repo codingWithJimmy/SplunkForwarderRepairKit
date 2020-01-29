@@ -18,7 +18,7 @@ fi
 
 ### Check for the existence of a serverName value and insert one if one isn't configured
 CURRENT_SERVER=$(cat "$SERVER_FILE" | grep "serverName =" | awk '{printf $3}')
-if [ -z "CURRENT_SERVER" ]; then
+if [ -z "$CURRENT_SERVER" ]; then
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: There is no serverName value configured. Inserting one..."
 	echo "
 	[general]
