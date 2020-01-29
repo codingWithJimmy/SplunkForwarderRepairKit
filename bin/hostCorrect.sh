@@ -22,7 +22,7 @@ if [ -z "CURRENT_SERVER" ]; then
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: There is no serverName value configured. Inserting one..."
 	echo "
 	[general]
-	host = IntentionallyWrong" >> "$SERVER_FILE"
+	serverName = IntentionallyWrong" >> "$SERVER_FILE"
 	CURRENT_SERVER=$(cat "$SERVER_FILE" | grep "serverName =" | awk '{printf $3}')
 fi
 
