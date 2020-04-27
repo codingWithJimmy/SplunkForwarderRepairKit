@@ -7,23 +7,23 @@ RESTARTGUID="$SPLUNK_HOME/etc/restartguid.txt"
 RESTARTDATETIME="$SPLUNK_HOME/etc/restartdatetime.txt"
 
 ### If any files exist, restart forwarder
-if [ -f $RESTARTINPUT ] || [ -f $RESTARTSERVER ] || [ -f $RESTARTDS ] || [ -f $RESTARTGUID ] || [ -f $RESTARTDATETIME ]; then
+if [ -f "$RESTARTINPUT" ] || [ -f "$RESTARTSERVER" ] || [ -f "$RESTARTDS" ] || [ -f "$RESTARTGUID" ] || [ -f "$RESTARTDATETIME" ]; then
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: One or more settings has been changed."
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Restarting forwarder."
-	if [ -f $RESTARTINPUT ]; then
-		rm $RESTARTINPUT
+	if [ -f "$RESTARTINPUT" ]; then
+		rm -f "$RESTARTINPUT"
 	fi
-	if [ -f $RESTARTSERVER ]; then
-		rm $RESTARTSERVER
+	if [ -f "$RESTARTSERVER" ]; then
+		rm -f "$RESTARTSERVER"
 	fi
-	if [ -f $RESTARTDS ]; then
-		rm $RESTARTDS
+	if [ -f "$RESTARTDS" ]; then
+		rm -f "$RESTARTDS"
 	fi
-	if [ -f $RESTARTGUID ]; then
-		rm $RESTARTGUID
+	if [ -f "$RESTARTGUID" ]; then
+		rm -f "$RESTARTGUID"
 	fi
-	if [ -f $RESTARTDATETIME ]; then
-		rm $RESTARTDATETIME
+	if [ -f "$RESTARTDATETIME" ]; then
+		rm -f "$RESTARTDATETIME"
 	fi
 	rm -f $SPLUNK_HOME/etc/apps/SplunkForwarderRepairKit/DeleteMeToRestart
 else
