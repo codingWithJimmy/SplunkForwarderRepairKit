@@ -31,7 +31,7 @@ if ($restartInput -eq "True" -OR $restartServer -eq "True" -OR $restartDS -eq "T
 	if ($restartDateTime -eq "True") {
 		Remove-Item -path "$dateTimePath"
 	}
-	Remove-Item -path "$SPLUNKHOME\etc\apps\SplunkForwarderRepairKit\DeleteMeToRestart"
+	Remove-Item -path "$PSScriptRoot\DeleteMeToRestart"
 } else {
 	Write-output "No settings have been changed." | timestamp
 	Write-output "No restart required." | timestamp

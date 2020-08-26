@@ -1,4 +1,7 @@
 #!/bin/bash
+### Source the appPath script to pull proper app context
+source appContext.sh
+
 ### Configure the path to the restart_check.txt file on the system
 RESTARTINPUT="$SPLUNK_HOME/etc/restartinput.txt"
 RESTARTSERVER="$SPLUNK_HOME/etc/restartserver.txt"
@@ -25,7 +28,7 @@ if [ -f "$RESTARTINPUT" ] || [ -f "$RESTARTSERVER" ] || [ -f "$RESTARTDS" ] || [
 	if [ -f "$RESTARTDATETIME" ]; then
 		rm -f "$RESTARTDATETIME"
 	fi
-	rm -f $SPLUNK_HOME/etc/apps/SplunkForwarderRepairKit/DeleteMeToRestart
+	rm -f "${APP_PATH}/DeleteMeToRestart"
 else
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: No settings have been changed."
 	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: No restart required."
