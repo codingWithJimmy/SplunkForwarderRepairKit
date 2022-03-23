@@ -5,10 +5,10 @@ RESTART_CHECK="$SPLUNK_HOME/etc/restartguid.txt"
 
 ### Check if there is already a backup of the instance.cfg and take the appropriate action.
 if [ -f "${INSTANCE}.*" ]; then
-	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Instance GUID has already been changed."
+	echo "$(date -R) ${HOSTNAME}: Instance GUID has already been changed."
 	CHECK="0"
 else
-	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Backing up instance.cfg"
+	echo "$(date -R) ${HOSTNAME}: Backing up instance.cfg"
 	mv "$INSTANCE" "${INSTANCE}.$(date +"%m%d%Y")"
 	touch $RESTART_CHECK
 fi

@@ -1,6 +1,6 @@
 #!/bin/bash
-### Source the appPath script to pull proper app context
-source appContext.sh
+### Source the appContext script to pull proper app context
+. $(dirname $0)/appContext.sh
 
 ### Configure the path to the restart_check.txt file on the system
 RESTARTINPUT="$SPLUNK_HOME/etc/restartinput.txt"
@@ -11,8 +11,8 @@ RESTARTDATETIME="$SPLUNK_HOME/etc/restartdatetime.txt"
 
 ### If any files exist, restart forwarder
 if [ -f "$RESTARTINPUT" ] || [ -f "$RESTARTSERVER" ] || [ -f "$RESTARTDS" ] || [ -f "$RESTARTGUID" ] || [ -f "$RESTARTDATETIME" ]; then
-	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: One or more settings has been changed."
-	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: Restarting forwarder."
+	echo "$(date -R) ${HOSTNAME}: One or more settings has been changed."
+	echo "$(date -R) ${HOSTNAME}: Restarting forwarder."
 	if [ -f "$RESTARTINPUT" ]; then
 		rm -f "$RESTARTINPUT"
 	fi
@@ -28,8 +28,8 @@ if [ -f "$RESTARTINPUT" ] || [ -f "$RESTARTSERVER" ] || [ -f "$RESTARTDS" ] || [
 	if [ -f "$RESTARTDATETIME" ]; then
 		rm -f "$RESTARTDATETIME"
 	fi
-	rm -f "${APP_PATH}/DeleteMeToRestart"
+	rm -f "${APP_PATH}/bin/DeleteMeToRestart"
 else
-	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: No settings have been changed."
-	echo "$(date +"%Y-%m-%d %H:%M:%S.%3N") ${HOSTNAME}: No restart required."
+	echo "$(date -R) ${HOSTNAME}: No settings have been changed."
+	echo "$(date -R) ${HOSTNAME}: No restart required."
 fi
