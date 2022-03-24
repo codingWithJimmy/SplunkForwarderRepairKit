@@ -4,7 +4,7 @@ $referenceDateTime = "$SPLUNKHOME\apps\SplunkForwarderRepairKit\datetime.xml"
 $restartDateTimeCheck = "$SPLUNKHOME\etc\restartdatetime.txt"
 
 ### Filter to attach timestamps where necessary
-filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff') ${env:COMPUTERNAME}: $_"}
+filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff zzz') ${env:COMPUTERNAME}: $_"}
 
 ### Check flags and take appropriate actions for host name
 if(Compare-Object -ReferenceObject $(Get-Content $existingDateTime) -DifferenceObject $(Get-Content $referenceDateTime)) {

@@ -4,7 +4,7 @@ $INSTANCE_CHECK = {$(Test-Path "$INSTANCE_FILE.*")}
 $RESTART_CHECK = "$SPLUNKHOME\etc\restartguid.txt"
 
 ### Filter to attach timestamps where necessary
-filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff') ${env:COMPUTERNAME}: $_"}
+filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff zzz') ${env:COMPUTERNAME}: $_"}
 
 ### Check to see if the GUID has already been replaced on this host previously by this script
 if ($INSTANCE_CHECK -eq "True") {

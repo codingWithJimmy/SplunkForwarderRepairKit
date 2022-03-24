@@ -11,7 +11,7 @@ $restartGUID = $(Test-Path "$SPLUNKHOME\etc\restartguid.txt" -PathType Leaf)
 $restartDateTime = $(Test-Path "$SPLUNKHOME\etc\restartdatetime.txt" -PathType Leaf)
 
 ### Filter to attach timestamps where necessary
-filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff') ${env:COMPUTERNAME}: $_"}
+filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff zzz') ${env:COMPUTERNAME}: $_"}
 
 if ($restartInput -eq "True" -OR $restartServer -eq "True" -OR $restartDS -eq "True" -OR $restartGUID -eq "True" -OR $restartDateTime -eq "True") {
 	Write-output "One or more settings has been changed." | timestamp
