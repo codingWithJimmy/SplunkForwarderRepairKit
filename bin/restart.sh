@@ -7,10 +7,9 @@ RESTARTINPUT="$SPLUNK_HOME/etc/restartinput.txt"
 RESTARTSERVER="$SPLUNK_HOME/etc/restartserver.txt"
 RESTARTDS="$SPLUNK_HOME/etc/restartds.txt"
 RESTARTGUID="$SPLUNK_HOME/etc/restartguid.txt"
-RESTARTDATETIME="$SPLUNK_HOME/etc/restartdatetime.txt"
 
 ### If any files exist, restart forwarder
-if [ -f "$RESTARTINPUT" ] || [ -f "$RESTARTSERVER" ] || [ -f "$RESTARTDS" ] || [ -f "$RESTARTGUID" ] || [ -f "$RESTARTDATETIME" ]; then
+if [ -f "$RESTARTINPUT" ] || [ -f "$RESTARTSERVER" ] || [ -f "$RESTARTDS" ] || [ -f "$RESTARTGUID" ]; then
 	echo "$(date -R) ${HOSTNAME}: One or more settings has been changed."
 	echo "$(date -R) ${HOSTNAME}: Restarting forwarder."
 	if [ -f "$RESTARTINPUT" ]; then
@@ -24,9 +23,6 @@ if [ -f "$RESTARTINPUT" ] || [ -f "$RESTARTSERVER" ] || [ -f "$RESTARTDS" ] || [
 	fi
 	if [ -f "$RESTARTGUID" ]; then
 		rm -f "$RESTARTGUID"
-	fi
-	if [ -f "$RESTARTDATETIME" ]; then
-		rm -f "$RESTARTDATETIME"
 	fi
 	rm -f "${APP_PATH}/bin/DeleteMeToRestart"
 else
