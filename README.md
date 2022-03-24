@@ -74,22 +74,6 @@ script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\dsRemove.ps1"
 deploymentServerUri =
 deploymentClientApp =
 
-### Scripts used to correct issues with datetime.xml
-### https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020
-[script://./bin/dateTimeCorrect.sh]
-disabled = 1
-index = _internal
-sourcetype = datetime_correct:output
-interval = -1
-source = datetime_correct_output
-
-[powershell://dateTimeCorrect]
-disabled = 1
-index = _internal
-sourcetype = datetime_correct:output
-source = datetime_correct_output
-script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\dateTimeCorrect.ps1"
-
 ### Admin password change scripts
 [script://./bin/pwchange.sh]
 disabled = 1
@@ -139,7 +123,7 @@ Windows - `regenGUID.ps1`\
 \*Nix - `regenGUID.sh`
 
 ###### Install updated datetime.xml file (REMOVED)
-The scripts that performed this action have been retired. This method is also not the safest method to update this file and should not be used. It is preferable to simply upgrade Splunk version (Splunk Enterprise or Splunk Universal Forwarder) that already has this fix in place.
+The scripts that performed this action have been retired. This method is also not the safest method to update this file and should not be used. It is preferable to simply upgrade Splunk versions (Splunk Enterprise or Splunk Universal Forwarder) that already has this fix in place.
 
 https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020#Upgrade_Splunk_platform_instances_to_a_version_with_an_updated_version_of_datetime.xml
 
