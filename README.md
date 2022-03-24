@@ -138,15 +138,19 @@ This app contains scripts for Windows and Linux forwarders that will move the ex
 Windows - `regenGUID.ps1`\
 \*Nix - `regenGUID.sh`
 
-###### Install updated datetime.xml file
-A notice was sent out in November of 2019 that stated there was an issue with the datetime.xml that would affect data ingested due to a misconfigured datetime.xml. The bug and fix can be read about here: https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020
+###### Install updated datetime.xml file (REMOVED)
+The scripts that performed this action have been retired. This method is also not the safest method to update this file and should not be used. It is preferable to simply upgrade Splunk version (Splunk Enterprise or Splunk Universal Forwarder) that already has this fix in place.
 
-This app contains scripts for Windows and Linux forwarders that will back up the existing "datetime.xml" to replace with the corrected version contained within the app.
+https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020#Upgrade_Splunk_platform_instances_to_a_version_with_an_updated_version_of_datetime.xml
 
-**NOTE: This should only be used on Universal Forwarders. Please see the above documentation link for instructions for other Splunk instances.**
+~~A notice was sent out in November of 2019 that stated there was an issue with the datetime.xml that would affect data ingested due to a misconfigured datetime.xml. The bug and fix can be read about here: https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020~~
 
-Windows - `dateTimeCorrect.ps1`\
-\*Nix - `dateTimeCorrect.sh`
+~~This app contains scripts for Windows and Linux forwarders that will back up the existing "datetime.xml" to replace with the corrected version contained within the app.~~
+
+~~**NOTE: This should only be used on Universal Forwarders. Please see the above documentation link for instructions for other Splunk instances.**~~
+
+~~Windows - `dateTimeCorrect.ps1`\
+\*Nix - `dateTimeCorrect.sh`~~
 
 ###### Update default 'changeme' password on Splunk Forwarders (primary installations before 7.1.0)
 Forwarders deployed before version 7.1.0 didn't require the admin password be changed upon installation. Starting at 7.1.0, the forwarders required either a user-seed file or manual input of the password during first-time run. While the REST API of the forwarder is not configured to allow POST requests until the password is changed on versions prior to 7.1.0, changing the password is still recommended.
