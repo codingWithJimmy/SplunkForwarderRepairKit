@@ -62,6 +62,8 @@ index = _internal
 sourcetype = ds_remove:output
 interval = -1
 source = ds_remove_output
+deploymentServerUri =
+deploymentClientApp =
 
 [powershell://dsRemove]
 disabled = 1
@@ -69,6 +71,8 @@ index = _internal
 sourcetype = ds_remove:output
 source = ds_remove_output
 script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\dsRemove.ps1"
+deploymentServerUri =
+deploymentClientApp =
 
 ### Scripts used to correct issues with datetime.xml
 ### https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020
@@ -113,6 +117,8 @@ Early in a deployment of Splunk, local configurations could be used while gettin
 
 This app contains scripts for Windows and Linux forwarders that will remove local configurations of "deploymentclient.conf" in favor of a configuration that has been deployed from the deployment server. This allows for that configuration to only be controlled via the deployment server from that point forward.
 
+Once the proper app and deployment server configurations are deployed to the host(s) using the `deploymentServerUri` and `deploymentClientApp` configurations in inputs.conf, this app will remove all configurations that would prevent those configurations for working.
+
 Windows - `dsRemove.ps1`\
 \*Nix - `dsRemove.sh`
 
@@ -135,7 +141,7 @@ Windows - `regenGUID.ps1`\
 ###### Install updated datetime.xml file
 A notice was sent out in November of 2019 that stated there was an issue with the datetime.xml that would affect data ingested due to a misconfigured datetime.xml. The bug and fix can be read about here: https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2020
 
-This app contains scripts for Windows and Linux forwarders that will back up the existing "datetime.xml" to replace with the corrected version contained within the app. 
+This app contains scripts for Windows and Linux forwarders that will back up the existing "datetime.xml" to replace with the corrected version contained within the app.
 
 **NOTE: This should only be used on Universal Forwarders. Please see the above documentation link for instructions for other Splunk instances.**
 
