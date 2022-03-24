@@ -6,7 +6,7 @@ $restartInputCheck = "$SPLUNKHOME\etc\restartinput.txt"
 $restartServerCheck = "$SPLUNKHOME\etc\restartserver.txt"
 
 ### Filter to attach timestamps where necessary
-filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff') ${env:COMPUTERNAME}: $_"}
+filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff zzz') ${env:COMPUTERNAME}: $_"}
 
 ### Compare values to actual host value and flag accordingly
 if (-not ($currentHost -eq $env:COMPUTERNAME)){
