@@ -10,3 +10,11 @@ if [ "${SCRIPT_NAME}" = "dsRemove.sh" ]; then
   CORRECT_DS=$(${SPLUNK_HOME}/bin/splunk btool --app=$APP_NAME inputs list script://./bin/$SCRIPT_NAME | grep deploymentServerUri | sed "s/deploymentServerUri = //")
   CORRECT_APP=$(${SPLUNK_HOME}/bin/splunk btool --app=$APP_NAME inputs list script://./bin/$SCRIPT_NAME | grep deploymentClientApp | sed "s/deploymentClientApp = //")
 fi
+
+## Capture the configuration details for changing the local password
+if [ "${SCRIPT_NAME}" = "pwchange.sh" ]; then
+  SPLUNK_USER=$(${SPLUNK_HOME}/bin/splunk btool --app=$APP_NAME inputs list script://./bin/$SCRIPT_NAME | grep newPass | sed "s/splunkUserName = //")
+  NEWPASS=$(${SPLUNK_HOME}/bin/splunk btool --app=$APP_NAME inputs list script://./bin/$SCRIPT_NAME | grep newPass | sed "s/newPass = //")
+  OLDPASS=$(${SPLUNK_HOME}/bin/splunk btool --app=$APP_NAME inputs list script://./bin/$SCRIPT_NAME | grep oldPass | sed "s/oldPass = //")
+  PRINT_PASS=$(${SPLUNK_HOME}/bin/splunk btool --app=$APP_NAME inputs list script://./bin/$SCRIPT_NAME | grep printPass | sed "s/printPass = //")
+fi
