@@ -81,13 +81,22 @@ index = _internal
 sourcetype = pw_change:output
 interval = -1
 source = pw_change_output
+splunkUserName = admin
+newPass = auto
+oldPass = changeme
+printPass = false
 
-[script://.\bin\pwchange.bat]
+[powershell://pwchange]
 disabled = 1
 index = _internal
 sourcetype = pw_change:output
 interval = -1
 source = pw_change_output
+script = . "$SplunkHome\etc\apps\SplunkForwarderRepairKit\bin\pwchange.ps1"
+splunkUserName = admin
+newPass = auto
+oldPass = changeme
+printPass = false
 ```
 
 ## Use-Cases
@@ -136,12 +145,12 @@ https://docs.splunk.com/Documentation/Splunk/latest/ReleaseNotes/FixDatetimexml2
 ~~Windows - `dateTimeCorrect.ps1`\
 \*Nix - `dateTimeCorrect.sh`~~
 
-###### Update default 'changeme' password on Splunk Forwarders (primary installations before 7.1.0)
+###### Update local user password on Splunk Forwarders (primary installations before 7.1.0)
 Forwarders deployed before version 7.1.0 didn't require the admin password be changed upon installation. Starting at 7.1.0, the forwarders required either a user-seed file or manual input of the password during first-time run. While the REST API of the forwarder is not configured to allow POST requests until the password is changed on versions prior to 7.1.0, changing the password is still recommended.
 
-This app contains scripts for Windows and Linux forwarders that will allow either a static password or random password to be configured. By default, a random password is generated and printed into the log which is sent back to Splunk.
+The variables for the environment can be configured in inputs.conf when the app is deployed such as the Splunk username (default 'admin'), whether to automatically generate a random password or to set it explicitly (default 'auto'), the value of the old password (default 'changeme'), and whether or not to send the new password back in plain-text to Splunk (default 'false').
 
-Windows - `pwchange.bat`\
+Windows - `pwchange.ps1`\
 \*Nix - `pwchange.sh`
 
 ## Restarting the Forwarder
