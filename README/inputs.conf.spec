@@ -25,6 +25,32 @@ printPass = {true|false}
 * Determines if the new password that is generated will be sent to _internal
 * Default value is 'false''. Change to 'true' to print password into _internal
 
+include_default = {true|false}
+* Used by btoolOutput.sh to determine if btool output will include 'system/default' as part of the output
+* Default value is "false"
+
+config_file = [string]
+* Used by configCorrect.sh to define which config file to change
+* Should only be the name of the file without the '.conf' suffix
+
+stanza = [string]
+* Used by configCorrect.sh to define which stanza to confiugure settings for
+
+setting = [string]
+* Used by configCorrect.sh to define which setting is being targeted for change
+
+value = [string]
+* Used by configCorrect.sh to define what the updated value is
+* If "action" is set to "remove", "value" is ignored
+
+action = {update|remove}
+* Used by configCorrect.sh to define which setting is being targeted for change
+* 'update' will update the existing value
+* 'remove' will remove any local configuration of the value
+
+destination_app = [string]
+* Used by configCorrect.sh to define which app the setting will be configured in
+
 [powershell:<uniqueName>]
 deploymentServerUri = [string]
 * Correct URI that should be configured with port
@@ -47,3 +73,29 @@ oldPass = [string]
 printPass = {true|false}
 * Determines if the new password that is generated will be sent to _internal
 * Default value is 'false''. Change to 'true' to print password into _internal
+
+include_default = {true|false}
+* Used by btoolOutput.sh to determine if btool output will include 'system/default' as part of the output
+* Default value is "false"
+
+config_file = [string]
+* Used by configCorrect.ps1 to define which config file to change
+* Should only be the name of the file without the '.conf' suffix
+
+stanza = [string]
+* Used by configCorrect.ps1 to define which stanza to confiugure settings for
+
+setting = [string]
+* Used by configCorrect.ps1 to define which setting is being targeted for change
+
+value = [string]
+* Used by configCorrect.ps1 to define what the updated value is
+* If "action" is set to "remove", "value" is ignored
+
+action = {update|remove}
+* Used by configCorrect.ps1 to define which setting is being targeted for change
+* 'update' will update the existing value
+* 'remove' will remove any local configuration of the value
+
+destination_app = [string]
+* Used by configCorrect.ps1 to define which app the setting will be configured in

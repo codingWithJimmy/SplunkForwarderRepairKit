@@ -3,15 +3,17 @@ $inputPath = "$SPLUNKHOME\etc\restartinput.txt"
 $serverPath = "$SPLUNKHOME\etc\restartserver.txt"
 $dsPath = "$SPLUNKHOME\etc\restartds.txt"
 $guidPath = "$SPLUNKHOME\etc\restartguid.txt"
+$configCorrectPath = "$SPLUNKHOME\etc\restartconfigcorrect.txt"
 $restartInput = $(Test-Path "$SPLUNKHOME\etc\restartinput.txt" -PathType Leaf)
 $restartServer = $(Test-Path "$SPLUNKHOME\etc\restartserver.txt" -PathType Leaf)
 $restartDS = $(Test-Path "$SPLUNKHOME\etc\restartds.txt" -PathType Leaf)
 $restartGUID = $(Test-Path "$SPLUNKHOME\etc\restartguid.txt" -PathType Leaf)
+$restartConfigCorrect = $(Test-Path "$SPLUNKHOME\etc\restartconfigcorrect.txt" -PathType Leaf)
 
 ### Filter to attach timestamps where necessary
 filter timestamp {"$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss.fff zzz') ${env:COMPUTERNAME}: $_"}
 
-if ($restartInput -eq "True" -OR $restartServer -eq "True" -OR $restartDS -eq "True" -OR $restartGUID -eq "True") {
+if ($restartInput -eq "True" -OR $restartServer -eq "True" -OR $restartDS -eq "True" -OR $restartGUID -eq "True" -OR $restartConfigCorrect -eq "True") {
 	Write-output "One or more settings has been changed." | timestamp
 	Write-output "Restarting forwarder." | timestamp
 	if ($restartInput -eq "True") {
@@ -25,6 +27,9 @@ if ($restartInput -eq "True" -OR $restartServer -eq "True" -OR $restartDS -eq "T
 	}
 	if ($restartGUID -eq "True") {
 		Remove-Item -path "$guidPath"
+	}
+	if ($restartConfigCorrect -eq "True") {
+		Remove-Item -path "$configCorrectPath"
 	}
 	Remove-Item -path "$PSScriptRoot\DeleteMeToRestart"
 } else {
