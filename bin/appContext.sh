@@ -3,7 +3,7 @@
 SCRIPT_PATH=$(realpath $0)
 APP_PATH=$(dirname ${SCRIPT_PATH})
 SCRIPT_NAME=$(echo ${SCRIPT_PATH} | sed "s|${APP_PATH}/||")
-APP_NAME=$(echo ${SCRIPT_PATH} | sed "s|${SPLUNK_HOME}/etc/apps" | sed "s|/${SCRIPT_NAME}||")
+APP_NAME=$(echo ${SCRIPT_PATH} | sed "s|${SPLUNK_HOME}/etc/apps||" | sed "s|/${SCRIPT_NAME}||")
 
 ## Capture the deploymentServerUri from the inputs stanza
 if [ "${SCRIPT_NAME}" = "dsRemove.sh" ]; then
