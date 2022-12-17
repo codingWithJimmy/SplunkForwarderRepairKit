@@ -20,7 +20,7 @@ if [ "${SCRIPT_NAME}" = "pwchange.sh" ]; then
 fi
 
 ## Capture the configuration details for btool outputs
-if [ "${SCRIPT_NAME}" = "btoolOutput.sh ${1}" ]; then
-  BTOOL_INPUT = $(${SPLUNK_HOME}/bin/splunk btool inputs list "script://./bin/btoolOutput.sh ${1}" --debug)
-  INCLUDE_DEFAULT = $(echo ${BTOOL_INPUT} | grep include_default | awk '{print $4}')
+if [ "${SCRIPT_NAME}" = "btoolOutput.sh" ]; then
+  BTOOL_INPUT=$(${SPLUNK_HOME}/bin/splunk btool inputs list "script://./bin/btoolOutput.sh $1" --debug)
+  INCLUDE_DEFAULT=$(echo ${BTOOL_INPUT} | grep include_default | awk '{print $4}')
 fi
