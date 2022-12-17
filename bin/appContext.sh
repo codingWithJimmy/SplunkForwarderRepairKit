@@ -21,6 +21,6 @@ fi
 
 ## Capture the configuration details for btool outputs
 if [ "${SCRIPT_NAME}" = "btoolOutput.sh" ]; then
-  BTOOL_INPUT=$(${SPLUNK_HOME}/bin/splunk btool inputs list "script://./bin/btoolOutput.sh $1" --debug)
-  INCLUDE_DEFAULT=$(echo ${BTOOL_INPUT} | grep include_default | awk '{print $4}')
+  BTOOL_INPUT=$(${SPLUNK_HOME}/bin/splunk btool --app=${APP_NAME} inputs list "script://./bin/btoolOutput.sh $1" --debug | grep include_default)
+  INCLUDE_DEFAULT=$(echo ${BTOOL_INPUT} | awk '{print $4}')
 fi
