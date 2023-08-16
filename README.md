@@ -1,5 +1,8 @@
 # Splunk Forwarder Repair Kit
-This kit was compiled based on common issues with Splunk deployments and managing idiosyncrasies that tend to naturally occur.
+This kit was compiled based on common issues with Splunk deployments and managing idiosyncrasies that tend to naturally occur over time or initial configurations that linger on as ghosts when there have been other improvements implemented since the initial build of Splunk was introduced.
+
+## Disclaimer
+This app is NOT supported by Splunk as was personally developed to solve these common use-cases experienced by PS consultants evaluating our customers' environments. Any issues should be opened here on GitHub so they can be addressed when time permits.
 
 ## Using the app
 Given the use-cases listed below, you will likely have multiple copies of the app with different scripted inputs enabled for each case. In any case, the app should restart Splunk when it is installed as all of the inputs are designed to be run when the forwarder starts.
