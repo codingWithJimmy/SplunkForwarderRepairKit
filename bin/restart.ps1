@@ -26,7 +26,7 @@ if ($restartInput -eq "True" -OR $restartServer -eq "True" -OR $restartDS -eq "T
 	if ($restartGUID -eq "True") {
 		Remove-Item -path "$guidPath"
 	}
-	Remove-Item -path "$PSScriptRoot\DeleteMeToRestart" 
+	Remove-Item -path "$ScriptDirectory\DeleteMeToRestart" 
 } else {
 	Write-output "No settings have been changed." | timestamp
 	Write-output "No restart required." | timestamp
